@@ -16,7 +16,7 @@ spec:
           workspace: pipeline-workspace          
       taskRef:
         name: cleanup
-
+ 
     - name: clone
       workspaces:
         - name: output
@@ -30,7 +30,7 @@ spec:
         value: $(params.branch)
       runAfter:
         - init      
-
+ 
     - name: lint
       taskRef:
         name: echo
@@ -39,7 +39,7 @@ spec:
         value: "Calling Flake8 linter..."
       runAfter:
         - clone
-
+ 
     - name: tests
       taskRef:
         name: echo
@@ -48,7 +48,7 @@ spec:
         value: "Running unit tests with PyUnit..."
       runAfter:
         - lint
-
+ 
     - name: build
       taskRef:
         name: echo
@@ -57,7 +57,7 @@ spec:
         value: "Building image for $(params.repo-url) ..."
       runAfter:
         - tests
-
+ 
     - name: deploy
       taskRef:
         name: echo
